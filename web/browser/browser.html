@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<link rel="import" href="packages/region_selector/region_selector.html">
+<link rel="import" href="track.html">
+
+<polymer-element name="uvaro-browser">
+  <template>
+    <style>
+      div {width: 100%;}
+      #tracks {background-color: red;}
+    </style>
+    <h2>Minimap</h2>
+    <div id="region-selector-div"></div>
+    <region-selector id="subsequence-selector" regionStart="{{seqStart}}" regionStop="{{seqStop}}" totalLength="{{seqLength}}"></region-selector>
+    <h2>Annotation Tracks ({{seqName}}: {{seqStart}} - {{seqStop}})</h2>
+    <div id="tracks">
+      <template repeat="{{track in trackList}}">
+        <uvaro-track sourcePath="{{track.sourcePath}}" seqStart="{{seqStart}}" seqStop="{{seqStop}}"></uvaro-track>
+      </template>
+    </div>
+    <button id="addButton">Add new track</button>
+  </template>
+</polymer-element>
+
+<script type="application/dart" src="browser.dart"></script>
+

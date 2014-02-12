@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<script type="application/dart" src="track.dart"></script>
+<polymer-element name="uvaro-track" attributes="sourcePath seqName seqStart seqStop">
+  <template>
+    <style>
+      svg {
+        width: 100%;
+        height: 30px;
+      }
+    </style>
+    <p>{{sourcePath}}: {{seqStart}} - {{seqStop}}</p>
+    <svg id="trackCanvas">
+      <g id="trackGroup"></g>
+    </svg>
+  </template>
+</polymer-element>
