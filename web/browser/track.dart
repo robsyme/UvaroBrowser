@@ -28,10 +28,10 @@ class UvaroTrack extends PolymerElement {
     });
 
     geneList.add(new Gene.pos("Gene1", 20, 89));
-    geneList.add(new Gene.pos("Gene1", 200, 80));
-    geneList.add(new Gene.pos("Gene1", 280, 5));
-    geneList.add(new Gene.pos("Gene1", 540, 162));
-    geneList.add(new Gene.pos("Gene1", 873, 90));
+    geneList.add(new Gene.pos("Gene2", 200, 80));
+    geneList.add(new Gene.pos("Gene3", 280, 5));
+    geneList.add(new Gene.pos("Gene4", 540, 162));
+    geneList.add(new Gene.pos("Gene5", 873, 90));
   }
 
   void seqStartChanged(old) {
@@ -40,6 +40,10 @@ class UvaroTrack extends PolymerElement {
   
   void seqStopChanged(old) {
     bpPerPixel = (seqStop - seqStart) / $['svgCanvas'].clientWidth;
+  }
+  
+  void geneClick(MouseEvent e) {
+    print("Gene clicked - ${e.currentTarget.id}");
   }
 }
 

@@ -11,27 +11,27 @@
       padding: 0;
     }
     
-    .gene {
+    .genePath {
       opacity: 0.75;
       stroke: black;
       fill: #F2F2FF;
     }
     
-    .trackLabel {
-      float: left;
-      display: block;
-      width: 100px;
+    .track-label {
+      color: gainsboro;
+      margin: 0;
     }
     </style>
+    <h4 class="track-label">{{sourcePath}}</h4>
     <svg id="svgCanvas">
       <line x1="{{cursorPositionPx + 0.5}}" x2="{{cursorPositionPx + 0.5}}" y1="0%" y2="100%" stroke-width="1" stroke="blue"></line>
       <template repeat="{{gene in geneList}}">
-          <g>
+          <g class="gene" id="{{gene.id}}" on-click="{{geneClick}}">
           <template if="{{(gene.geneLength / bpPerPixel) >= 10}}">
-            <path class="gene" id="{{gene.id}}" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 5.5 v 20 h {{gene.geneLength / bpPerPixel - 10}} l 10 -10 l -10 -10 Z"></path>
+            <path class="genePath" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 5.5 v 20 h {{gene.geneLength / bpPerPixel - 10}} l 10 -10 l -10 -10 Z"></path>
           </template>
           <template if="{{(gene.geneLength / bpPerPixel) < 10}}">
-            <path class="gene" id="{{gene.id}}" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 5.5 v 20 h {{gene.geneLength / bpPerPixel}} v -20 Z"></path>
+            <path class="genePath" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 5.5 v 20 h {{gene.geneLength / bpPerPixel}} v -20 Z"></path>
           </template>
           <path stroke="red" stroke-width="1" stroke-dasharray="1,2" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 15.5 h {{gene.geneLength / bpPerPixel}}"></path>
         </g>
