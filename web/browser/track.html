@@ -7,6 +7,8 @@
     svg {
       width: 100%;
       height: 30px;
+      margin: 0;
+      padding: 0;
     }
     
     .gene {
@@ -14,11 +16,15 @@
       stroke: black;
       fill: #F2F2FF;
     }
+    
+    .trackLabel {
+      float: left;
+      display: block;
+      width: 100px;
+    }
     </style>
-    <p>{{sourcePath}}: {{seqStart}} - {{seqStop}}</p>
-    <div id="testDiv">
     <svg id="svgCanvas">
-        <line x1="{{cursorPositionPx + 0.5}}" x2="{{cursorPositionPx + 0.5}}" y1="0%" y2="100%" stroke-width="1" stroke="blue"></line>
+      <line x1="{{cursorPositionPx + 0.5}}" x2="{{cursorPositionPx + 0.5}}" y1="0%" y2="100%" stroke-width="1" stroke="blue"></line>
       <template repeat="{{gene in geneList}}">
           <g>
           <template if="{{(gene.geneLength / bpPerPixel) >= 10}}">
@@ -31,6 +37,5 @@
         </g>
       </template>
     </svg>
-    </div>
   </template>
 </polymer-element>

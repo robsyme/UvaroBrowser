@@ -9,7 +9,7 @@ import 'package:polymer/polymer.dart';
  */
 @CustomTag('uvaro-browser')
 class UvaroBrowser extends PolymerElement {
-  @observable int cursorPositionPx;
+  @observable int cursorPositionPx = -1;
   @observable String seqName;
   @observable int seqStart;
   @observable int seqStop;
