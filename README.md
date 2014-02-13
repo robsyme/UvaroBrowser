@@ -5,4 +5,4 @@ Learning to use web components by writing a genome annotation editor. Very, very
 
 Right now, it should look something like:
 
-![Interaction example](http://i.imgur.com/INzS9n5.gif)
+![Interaction example](http://i.imgur.com/V8un5Tt.gif)
