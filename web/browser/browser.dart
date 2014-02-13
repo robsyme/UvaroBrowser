@@ -26,33 +26,14 @@ class UvaroBrowser extends PolymerElement {
       trackList.add(track);
       track.remove();
     });
-    renderall();
-  }
-  
-  void renderall() {
-    trackList.forEach((UvaroTrack track) {
-      track.seqStart = seqStart;
-      track.seqStop = seqStop;
-      track.render();
-    });
-  }
-  
-  void seqStartChanged() {
-    window.animationFrame.then((_) {
-      renderall();
-    });
-  }
-  
-  void seqStopChanged() {
-    window.animationFrame.then((_) {
-      renderall();
-    });
   }
   
   void setupSelector(String seqName) {
     // TODO Read sequence lengths from fasta file (or gff3).
     this.seqName = seqName;
     this.seqLength = 1000;
+    this.seqStart = 1;
+    this.seqStop = 999;
     
     window.onResize.listen((Event e) {
       $['subsequence-selector'].refreshWidths(e);
