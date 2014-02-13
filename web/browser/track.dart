@@ -28,9 +28,9 @@ class UvaroTrack extends PolymerElement {
     });
 
     geneList.add(new Gene.pos("Gene1", 20, 89));
-    geneList.add(new Gene.pos("Gene1", 145, 80));
-    geneList.add(new Gene.pos("Gene1", 250, 5));
-    geneList.add(new Gene.pos("Gene1", 657, 162));
+    geneList.add(new Gene.pos("Gene1", 200, 80));
+    geneList.add(new Gene.pos("Gene1", 280, 5));
+    geneList.add(new Gene.pos("Gene1", 540, 162));
     geneList.add(new Gene.pos("Gene1", 873, 90));
   }
 
