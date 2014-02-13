@@ -4,14 +4,33 @@
 <polymer-element name="uvaro-track" attributes="sourcePath seqName seqStart seqStop">
   <template>
     <style>
-      svg {
-        width: 100%;
-        height: 30px;
-      }
+    svg {
+      width: 100%;
+      height: 30px;
+    }
+    
+    .gene {
+      opacity: 0.5;
+      stroke: black;
+      fill: #F2F2FF;
+    }
     </style>
     <p>{{sourcePath}}: {{seqStart}} - {{seqStop}}</p>
-    <svg id="trackCanvas">
-      <g id="trackGroup"></g>
+    <div id="testDiv">
+    <svg id="svgCanvas">
+      <template repeat="{{gene in geneList}}">
+          <g>
+          <template if="{{(gene.geneLength / bpPerPixel) >= 10}}">
+            <path class="gene" id="{{gene.id}}" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 0.5 v 20 h {{gene.geneLength / bpPerPixel - 10}} l 10 -10 l -10 -10 Z"></path>
+            <path stroke="red" stroke-width="1" stroke-dasharray="1,2" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 10.5 h {{gene.geneLength / bpPerPixel}}"></path>
+          </template>
+          <template if="{{(gene.geneLength / bpPerPixel) < 10}}">
+            <path class="gene" id="{{gene.id}}" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 0.5 v 20 h {{gene.geneLength / bpPerPixel}} v -20 Z"></path>
+            <path stroke="red" stroke-width="1" stroke-dasharray="1,2" d="M {{(gene.geneStart - seqStart) / bpPerPixel}} 10.5 h {{gene.geneLength / bpPerPixel}}"></path>
+          </template>
+        </g>
+      </template>
     </svg>
+    </div>
   </template>
 </polymer-element>
