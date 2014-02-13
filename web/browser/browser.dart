@@ -9,10 +9,10 @@ import 'package:polymer/polymer.dart';
  */
 @CustomTag('uvaro-browser')
 class UvaroBrowser extends PolymerElement {
+  @observable int cursorPositionPx;
   @observable String seqName;
   @observable int seqStart;
   @observable int seqStop;
-  @observable int seqWidth;
   @observable int seqLength;
   List<UvaroTrack> trackList = toObservable([]);
   UvaroBrowser.created() : super.created();
@@ -44,5 +44,13 @@ class UvaroBrowser extends PolymerElement {
     UvaroTrack newTrack =  new Element.tag('uvaro-track')
     ..sourcePath = 'new/track/source.gff3';
     trackList.add(newTrack);
+  }
+  
+  void testMouseMove(MouseEvent e) {
+    cursorPositionPx = e.offset.x;
+  }
+  
+  void clearCursor(MouseEvent e) {
+    cursorPositionPx = -1;
   }
 }

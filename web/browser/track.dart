@@ -1,7 +1,6 @@
 library track;
 
 import 'dart:html';
-import 'dart:svg';
 import 'package:polymer/polymer.dart';
 
 /*
@@ -9,6 +8,7 @@ import 'package:polymer/polymer.dart';
  */
 @CustomTag('uvaro-track')
 class UvaroTrack extends PolymerElement {
+  @published int cursorPositionPx;
   @published String sourcePath;
   @published String seqName;
   @published int seqLength;

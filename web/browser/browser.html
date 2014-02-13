@@ -16,7 +16,7 @@
     <h2>Annotation Tracks ({{seqName}}: {{seqStart}} - {{seqStop}})</h2>
     <div id="tracks">
       <template repeat="{{track in trackList}}">
-        <uvaro-track sourcePath="{{track.sourcePath}}" seqStart="{{seqStart}}" seqStop="{{seqStop}}"></uvaro-track>
+        <uvaro-track on-mouseout="{{clearCursor}}" on-mousemove="{{testMouseMove}}" sourcePath="{{track.sourcePath}}" seqStart="{{seqStart}}" seqStop="{{seqStop}}" cursorPositionPx="{{cursorPositionPx}}"></uvaro-track>
       </template>
     </div>
     <button id="addButton">Add new track</button>
