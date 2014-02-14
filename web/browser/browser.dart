@@ -3,12 +3,14 @@ library browser;
 import 'dart:html';
 import 'track.dart';
 import 'package:polymer/polymer.dart';
+import 'fasta.dart';
 
 /**
  * Rough sketches of a genome browser build on web components.
  */
 @CustomTag('uvaro-browser')
 class UvaroBrowser extends PolymerElement {
+  @published String src;
   @observable int cursorPositionPx = -1;
   @observable String seqName;
   @observable int seqStart;
@@ -19,12 +21,21 @@ class UvaroBrowser extends PolymerElement {
   
   @override
   void enteredView() {
+    print("Entered view, have src=$src");
+    getSeqs(src);
     setupSelector("scaffold_001");
     $['addButton'].onClick.listen(addTrack);
     // Move the track from light DOM to dark.
     querySelectorAll('uvaro-track').forEach((UvaroTrack track){
       trackList.add(track);
       track.remove();
+    });
+  }
+  
+  void getSeqs(String url) {
+    HttpRequest.getString(url)
+    .then((String data) {
+      print(const FastaConverter().convert(data));
     });
   }
   
@@ -52,5 +63,9 @@ class UvaroBrowser extends PolymerElement {
   
   void clearCursor(MouseEvent e) {
     cursorPositionPx = -1;
+  }
+  
+  void srcChanged(String oldValue, String newValue) {
+    print("Src attribute changed from '$oldValue' to '$newValue'");
   }
 }

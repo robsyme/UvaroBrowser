@@ -1,5 +1,6 @@
 library track;
 
+import 'dart:math';
 import 'dart:html';
 import 'package:polymer/polymer.dart';
 
@@ -27,35 +28,41 @@ class UvaroTrack extends PolymerElement {
       bpPerPixel = (seqStop - seqStart) / $['svgCanvas'].clientWidth;
     });
 
-    geneList.add(new Gene.pos("Gene1", 20, 89));
+    Gene gene1 = new Gene.pos("Gene1", 20, 89);
+    geneList.add(gene1);
     geneList.add(new Gene.pos("Gene2", 200, 80));
-    geneList.add(new Gene.pos("Gene3", 280, 5));
+    geneList.add(new Gene.pos("Gene3", 281, 5));
     geneList.add(new Gene.pos("Gene4", 540, 162));
     geneList.add(new Gene.pos("Gene5", 873, 90));
   }
 
   void seqStartChanged(old) {
-    bpPerPixel = (seqStop - seqStart) / $['svgCanvas'].clientWidth;
+    bpPerPixel = (seqStop - seqStart + 1) / $['svgCanvas'].clientWidth;
   }
   
   void seqStopChanged(old) {
-    bpPerPixel = (seqStop - seqStart) / $['svgCanvas'].clientWidth;
+    bpPerPixel = (seqStop - seqStart + 1) / $['svgCanvas'].clientWidth;
   }
   
   void geneClick(MouseEvent e) {
-    print("Gene clicked - ${e.currentTarget.id}");
+    geneList.firstWhere((Gene gene) {
+      return gene.id == e.currentTarget.id;
+    }).debug();
   }
 }
 
-
 @CustomTag('uvaro-gene')
 class Gene {
-  String id;
-  int geneStart;
-  int geneLength;
+  @observable String id;
+  @observable int geneStart;
+  @observable int geneLength;
   bool strand = true;
   
   Gene(this.id, this.geneStart, this.geneLength, this.strand);
   Gene.pos(String id, int geneStart, int geneLength) : this(id, geneStart, geneLength, true);
   Gene.neg(String id, int geneStart, int geneLength) : this(id, geneStart, geneLength, false);
+  
+  void debug() {
+    print("Called the debug method on $id!");
+  }
 }
